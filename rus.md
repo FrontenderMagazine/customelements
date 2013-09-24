@@ -167,12 +167,12 @@ HTML-элементов**. Эта спецификация — одна из н
         <tr>
             <td>Неопознанный элемент</td>
             <td>HTMLElement</td>
-            <td>`<x-tabs>`, `<my-element>`, `<my-awesome-app>`</td>
+            <td>&lt;x-tabs&gt;, &lt;my-element&gt;, &lt;my-awesome-app&gt;</td>
         </tr>
         <tr>
             <td>Неизвестный элемент</td>
             <td>HTMLUnknownElement</td>
-            <td>`<tabs>`, `<foo_bar>`</td>
+            <td>&lt;tabs&gt;, &lt;foo_bar&gt;</td>
         </tr>
     </tbody>
 </table>
