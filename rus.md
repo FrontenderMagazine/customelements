@@ -61,12 +61,12 @@ HTML-элементов**. Эта спецификация — одна из н
 
 ### Регистрация новых элементов
 
-Кастомные элементы можно создать с помощью функции `document.register()`:
+Кастомные элементы можно создать с помощью функции `document.registerElement()`:
 
-    var XFoo = document.register('x-foo');
+    var XFoo = document.registerElement('x-foo');
     document.body.appendChild(new XFoo());
 
-Первый аргумент `document.register()` — название тэга элемента. Это название
+Первый аргумент `document.registerElement()` — название тэга элемента. Это название
 **обязательно должно содержать дефис (-)**. Например, `x-tags`, `my-element` и
 `my-awesome-app` — это разрешенные имена для новых элементов, а `tabs` и `foo_bar`
 использовать нельзя. Это ограничение позволяет парсеру отличать кастомные элементы
@@ -80,17 +80,17 @@ HTML-элементов**. Эта спецификация — одна из н
 По умолчанию кастомные элементы наследуют от `HTMLElement`. Таким образом,
 предыдущий пример соответствует следующему коду:
 
-    var XFoo = document.register('x-foo', {
+    var XFoo = document.registerElement('x-foo', {
       prototype: Object.create(HTMLElement.prototype)
     });
 
-Вызов `document.register('x-foo')` обучает браузер новому элементу и возвращает
+Вызов `document.registerElement('x-foo')` обучает браузер новому элементу и возвращает
 функцию-конструктор, которую можно использовать для того, чтобы создавать
 экземпляры `x-foo`. Если вы не хотите использовать конструктор, то есть и
 другие [способы инициализации элемента][7].
 
 Если вы не хотите, чтобы конструктор находился внутри глобального элемента `window`,
-его можно поместить в некое пространство имен (`var myapp = {}; myapp.XFoo = document.register('x-foo');`)
+его можно поместить в некое пространство имен (`var myapp = {}; myapp.XFoo = document.registerElement('x-foo');`)
 или вообще нигде не сохранять на него ссылку.
 
 ### Расширение встроенных элементов
@@ -100,7 +100,7 @@ HTML-элементов**. Эта спецификация — одна из н
 чтобы расширить элемент `button`, вам нужно создать новый элемент, который
 наследует прототип `HTMLButtonElement`:
 
-    var MegaButton = document.register('mega-button', {
+    var MegaButton = document.registerElement('mega-button', {
       prototype: Object.create(HTMLButtonElement.prototype)
     });
 
@@ -140,14 +140,14 @@ HTML-элементов**. Эта спецификация — одна из н
 
 
 > **Примечание:** `<x-tabs>` все равно будет являться `HTMLUnknownElement` в тех
-браузерах, которые не поддерживают `document.register()`.
+браузерах, которые не поддерживают `document.registerElement()`.
 
 #### Неопознанные элементы
 
-Поскольку кастомные элементы регистрируются через скрипт (`document.register()`),
+Поскольку кастомные элементы регистрируются через скрипт (`document.registerElement()`),
 **они могут быть объявлены или созданы _до того_, как браузер зарегистрирует их
 определение**. Например, на странице вы можете определить `x-tabs`, а
-`document.register('x-tabs')` выполнить намного позднее.
+`document.registerElement('x-tabs')` выполнить намного позднее.
 
 Перед тем, как элементы обновят свои определения, они называются **неопознанными
 элементами**. Это HTML-элементы, у которых есть корректное имя для кастомного
@@ -229,7 +229,7 @@ HTML-элементов**. Эта спецификация — одна из н
     var megaButton = new MegaButton();
     document.body.appendChild(megaButton);
 
-Итак, мы разобрались, как использовать `document.register()` для того, чтобы
+Итак, мы разобрались, как использовать `document.registerElement()` для того, чтобы
 рассказать браузеру о новом тэге… ну и что? Пока ничего не происходит. Давайте
 добавим свойства и методы.
 
@@ -253,7 +253,7 @@ HTML-элементов**. Эта спецификация — одна из н
     Object.defineProperty(XFooProto, "bar", {value: 5});
 
     // 3. Регистрируем определение x-foo.
-    var XFoo = document.register('x-foo', {prototype: XFooProto});
+    var XFoo = document.registerElement('x-foo', {prototype: XFooProto});
 
     // 4. Создаем элемент x-foo.
     var xfoo = document.createElement('x-foo');
@@ -266,7 +266,7 @@ HTML-элементов**. Эта спецификация — одна из н
 прототипы так, как описано выше, вот краткая версия этого кода:
 
 
-    var XFoo = document.register('x-foo', {
+    var XFoo = document.registerElement('x-foo', {
       prototype: Object.create(HTMLElement.prototype, {
         bar: {
           get: function() { return 5; }
@@ -323,7 +323,7 @@ HTML-элементов**. Эта спецификация — одна из н
     proto.createdCallback = function() {...};
     proto.enteredDocumentCallback = function() {...};
 
-    var XFoo = document.register('x-foo', {prototype: proto});
+    var XFoo = document.registerElement('x-foo', {prototype: proto});
 
 
 **Все коллбэки жизненного цикла необязательны**, определяйте их тогда, когда
@@ -360,7 +360,7 @@ HTML-элементов**. Эта спецификация — одна из н
       this.innerHTML = "Я — x-foo-with-markup!";
     };
 
-    var XFoo = document.register('x-foo-with-markup', {prototype: XFooProto});
+    var XFoo = document.registerElement('x-foo-with-markup', {prototype: XFooProto});
 
 
 Инициализируем этот тэг и смотрим на него в DevTools (правый клик, выбираем
@@ -396,7 +396,7 @@ Shadow DOM дает кастомным элементам:
       shadow.innerHTML = "Я внутри Shadow DOM элемента!";
     };
 
-    var XFoo = document.register('x-foo-shadowdom', {prototype: XFooProto});
+    var XFoo = document.registerElement('x-foo-shadowdom', {prototype: XFooProto});
 
 
 Вместо того, чтобы устанавливать `.innerHTML` элемента, я создал теневой
@@ -439,7 +439,7 @@ Shadow DOM дает кастомным элементам:
         }
       }
     });
-    document.register('x-foo-from-template', {prototype: proto});
+    document.registerElement('x-foo-from-template', {prototype: proto});
     </script>
 
 В этой паре строк кода довольно много всего. Давайте разберемся во всем, что
@@ -565,11 +565,11 @@ CSS-псевдокласс `:unresolved` поддерживается Chrome 29.
 ### Определение функциональности
 
 Определить, поддерживает ли браузер эту функциональность, довольно просто — нужно
-проверить, существует ли `document.register()`:
+проверить, существует ли `document.registerElement()`:
 
 
     function supportsCustomElements() {
-      return 'register' in document;
+      return 'registerElement' in document;
     }
 
     if (supportsCustomElements()) {
@@ -581,7 +581,7 @@ CSS-псевдокласс `:unresolved` поддерживается Chrome 29.
 
 ### Поддержка браузерами
 
-`document.register()` впервые начал поддерживаться в Chrome 27 и Firefox ~23.
+`document.registerElement()` впервые начал поддерживаться в Chrome 27 и Firefox ~23.
 Однако спецификация с тех пор несколько развилась. Последняя спецификация
 поддерживается начиная с Chrome 31.
 
@@ -611,7 +611,7 @@ CSS-псевдокласс `:unresolved` поддерживается Chrome 29.
 
 Нужно отметить, что внутри Polymer существует декларативная форма регистрации
 элемента: `<polymer-element>`. Как они это делают? Используется
-`document.register('polymer-element')` и приемы, которые я описал в главе
+`document.registerElement('polymer-element')` и приемы, которые я описал в главе
 «[Создание элементов из шаблона][22]».
 
 ## Заключение
