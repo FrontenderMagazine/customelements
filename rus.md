@@ -629,23 +629,23 @@ CSS-псевдокласс `:unresolved` поддерживается Chrome 29.
    [3]: https://html5-demos.appspot.com/static/webcomponents-bdconf/demos/components/hangouts/index.html
    [4]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html
    [5]: https://www.w3.org/TR/2013/WD-components-intro-20130606/
-   [6]: #publicapi
-   [7]: #instantiating
+   [6]: #dobavlyaempublichnesvoystvaimetod
+   [7]: #initsializatsiyalementov
    [8]: http://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#htmlunknownelement
    [9]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
    [10]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/get
-   [11]: #lifecycle
+   [11]: #kollbkinaprotyazheniizhiznennogotsiklalementa
    [12]: http://www.html5rocks.com/tutorials/webcomponents/shadowdom/
    [13]: http://www.html5rocks.com/tutorials/webcomponents/shadowdom-201/
    [14]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/templates/index.html
    [15]: http://www.html5rocks.com/tutorials/webcomponents/template/
-   [16]: #shadowdom
+   [16]: #hranimvnutrennyuyulogikuvshadowdom
    [17]: http://en.wikipedia.org/wiki/Flash_of_unstyled_content
-   [18]: #unresolvedels
-   [19]: #upgrades
+   [18]: #neopoznannelement
+   [19]: #obnovlenielementov
    [20]: http://www.polymer-project.org/articles/styling-elements.html#preventing-fouc
    [21]: http://lists.w3.org/Archives/Public/public-webapps/2013JulSep/0287.html
-   [22]: #fromtemplate
+   [22]: #sozdaemlementposhablonu
    [23]: http://www.polymer-project.org/
    [24]: http://www.polymer-project.org/articles/styling-elements.html
    [25]: http://www.polymer-project.org/
