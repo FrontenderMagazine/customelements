@@ -628,7 +628,7 @@ CSS-псевдокласс `:unresolved` поддерживается Chrome 29.
    [2]: http://www.whatwg.org/specs/web-apps/current-work/multipage/
    [3]: https://html5-demos.appspot.com/static/webcomponents-bdconf/demos/components/hangouts/index.html
    [4]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/custom/index.html
-   [5]: https://dvcs.w3.org/hg/webcomponents/raw-file/tip/explainer/index.html
+   [5]: https://www.w3.org/TR/2013/WD-components-intro-20130606/
    [6]: #publicapi
    [7]: #instantiating
    [8]: http://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#htmlunknownelement
